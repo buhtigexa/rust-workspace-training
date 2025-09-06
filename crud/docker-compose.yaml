@@ -1,0 +1,32 @@
+version: "3.9"
+
+services:
+  mysql:
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpass
+      MYSQL_USER: marce
+      MYSQL_PASSWORD: secret
+      MYSQL_DATABASE: mydb
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      # ✅ ahora el init.sql está en la raíz del repo
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+
+  rust_app:
+    build:
+      context: .          # ✅ ahora el contexto es la raíz (donde está Cargo.toml y Dockerfile)
+      dockerfile: Dockerfile
+    image: crud:latest
+    depends_on:
+      - mysql
+    ports:
+      - "3000:3000"
+    env_file:
+      - ./conf/secrets.env  # ✅ sigue igual, ruta relativa al compose
+
+volumes:
+  mysql_data:
