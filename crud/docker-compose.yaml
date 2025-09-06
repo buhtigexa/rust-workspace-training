@@ -13,12 +13,11 @@ services:
       - "3306:3306"
     volumes:
       - mysql_data:/var/lib/mysql
-      # ✅ ahora el init.sql está en la raíz del repo
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql:ro
 
   rust_app:
     build:
-      context: .          # ✅ ahora el contexto es la raíz (donde está Cargo.toml y Dockerfile)
+      context: .          
       dockerfile: Dockerfile
     image: crud:latest
     depends_on:
@@ -26,7 +25,7 @@ services:
     ports:
       - "3000:3000"
     env_file:
-      - ./conf/secrets.env  # ✅ sigue igual, ruta relativa al compose
+      - ./conf/secrets.env  
 
 volumes:
   mysql_data:

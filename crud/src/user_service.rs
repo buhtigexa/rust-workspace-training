@@ -8,7 +8,6 @@ pub struct UserService {
 
 impl UserService {
     pub async fn new() -> Result<Self, Error> {
-        // Cargar DATABASE_URL desde env (docker-compose lo setea con env_file)
         let url = std::env::var("DATABASE_URL")
             .expect("❌ DATABASE_URL no está definido (revisá conf/secrets.env o docker-compose)");
         
