@@ -1,0 +1,43 @@
+# ---- Rust build ----
+/target
+**/*.rs.bk
+
+# ---- Cargo ----
+# Cargo.lock se incluye en binarios, pero puede ignorarse en librerías
+# Descomenta si tu repo es una librería y no un binario
+# Cargo.lock
+
+# ---- Logs ----
+*.log
+
+# ---- Backup / dumps ----
+*.swp
+*.swo
+*.tmp
+*.bak
+
+# ---- OS files ----
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Linux
+*~
+
+# ---- IDEs / Editors ----
+# VSCode
+.vscode/
+*.code-workspace
+
+# JetBrains (CLion, IntelliJ, RustRover, etc.)
+.idea/
+
+# Other editors
+*.iml
